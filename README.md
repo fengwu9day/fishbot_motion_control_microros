@@ -77,21 +77,22 @@
 
 ## 上位机运行指令
 
-需要提前安装docker，可以使用一键安装进行。
+需要提前安装docker，可以使用一键安装进行。日常连接、速度指令和 Agent 日志的含义见 [docs/使用说明.md](docs/使用说明.md)。
 
 
-WIFI,UDP模式
-
-```
-docker run -it --rm -v /dev:/dev -v /dev/shm:/dev/shm --privileged --net=host microros/micro-ros-agent:$ROS_DISTRO udp4 --port 8888 -v6
-```
-
-Serial,串口模式
+Serial,串口模式（默认）
 
 ```bash
 # Serial micro-ROS Agent
-docker run -it --rm -v /dev:/dev -v /dev/shm:/dev/shm --privileged --net=host microros/micro-ros-agent:$ROS_DISTRO serial --dev /dev/ttyUSB0 -v6 -b 921600
-docker run -it --rm -v /dev:/dev -v /dev/shm:/dev/shm --privileged --net=host microros/micro-ros-agent:$ROS_DISTRO serial --dev /dev/ttyUSB0 -v6 -b 115200
+docker run -it --rm -v /dev:/dev -v /dev/shm:/dev/shm --privileged --net=host microros/micro-ros-agent:$ROS_DISTRO serial --dev /dev/ttyUSB1 -v4 -b 921600
+```
+
+当前建图工作站识别到小车为 `/dev/ttyUSB1`，波特率为 `921600`。USB 设备节点可能因重插而变化，启动 Agent 前请检查 `ls -l /dev/serial/by-id /dev/ttyUSB*`，并确保波特率与固件配置一致。已有设备会保留 Preferences 中保存的传输模式，不会因升级固件自动切换；若之前使用 UDP，可双击板载按键切换到串口模式（切换后设备会重启）。
+
+WIFI,UDP模式
+
+```bash
+docker run -it --rm -v /dev:/dev -v /dev/shm:/dev/shm --privileged --net=host microros/micro-ros-agent:$ROS_DISTRO udp4 --port 8888 -v6
 ```
 
 ## 其他指令 

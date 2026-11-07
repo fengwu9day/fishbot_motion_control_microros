@@ -560,10 +560,8 @@ bool microros_setup_transport_serial_(HardwareSerial &serial)
     uint32_t serial_baudraate = config.serial_baudrate();
     // 使用Serial.updateBaudRate函数更新串口波特率
     serial.updateBaudRate(serial_baudraate);
-    if (!set_microros_serial_transports(serial))
-    {
-        return false;
-    }
+    set_microros_serial_transports(serial);
+
     return true;
 }
 

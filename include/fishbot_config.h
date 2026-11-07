@@ -23,7 +23,7 @@
 /*=========================================默认值定义=====================================*/
 #define CONFIG_DEFAULT_TRANSPORT_MODE_WIFI_SERVER_IP "192.168.2.105" // 默认UDP服务端IP
 #define CONFIG_DEFAULT_TRANSPORT_MODE_WIFI_SERVER_PORT "8888"        // 默认UDP服务端端口号
-#define CONFIG_DEFAULT_TRANSPORT_MODE "udp_client"                   // 默认传输模式-udp_client模式
+#define CONFIG_DEFAULT_TRANSPORT_MODE "serial"                       // 默认传输模式-串口模式
 #define CONFIG_DEFAULT_SERIAL_ID "0"                                 // 可选使用0或者2,使用2则需要使用GPIO16和17作为RXTX
 #define CONFIG_DEFAULT_TRANSPORT_SERIAL_BAUD "921600"
 
